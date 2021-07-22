@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>{{username}}'s sign-up email!</title>
+    <meta name="description" content="{{username}}'s sign-up email!" />
+    <meta name="author" content="Preet" />
+    <link rel="stylesheet" href="body.css" />
+  </head>
+
+  <body>
+    <div class="signup-email-container">
+      <h1 class="signup-email-heading">
+        {{username}}, click the button to reset your password:
+      </h1>
+      <a
+        style="
+          background-color: rgb(255, 255, 255, 100%) !important;
+          height: 100px !important;
+          border-radius: 20px !important;
+          cursor: pointer !important;
+          background-size: cover !important;
+          background-position: center !important;
+          box-sizing: border-box !important;
+          justify-content: center !important;
+          align-items: center;
+          padding-top: 20px !important;
+          padding-bottom: 20px !important;
+          padding-right: 25px !important;
+          padding-left: 25px !important;
+          align-items: center !important;
+          margin: 30px 15px 20px 15px !important;
+          padding-top: 10px;
+          transition: box-shadow 2000ms ease,
+            background-color 1000ms ease-in-out !important;
+          text-decoration: none !important;
+          color: black !important;
+          border-bottom: 20px !important;
+        "
+        class="signup-email-button"
+        href="{{link}}"
+        target="_blank"
+      >
+        Reset
+      </a>
+    </div>
+  </body>
+</html>

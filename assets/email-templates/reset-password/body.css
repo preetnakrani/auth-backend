@@ -1,0 +1,62 @@
+body {
+  font-family: verdana, monospace;
+}
+
+.signup-email-heading {
+  margin-bottom: 35px;
+}
+
+.signup-email-container {
+  background: url("https://i.imgur.com/PfjHnHp.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  border-radius: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  width: 60vw;
+  height: 200px;
+}
+
+/* .signup-email-button {
+  background-color: rgb(255, 255, 255, 100%) !important;
+  height: 100px !important;
+  box-shadow: 0 0 50px rgb(0 0 0 / 10%) !important;
+  border-radius: 20px !important;
+  cursor: pointer !important;
+  background-size: cover !important;
+  background-position: center !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  justify-content: center !important;
+  padding: 20px !important;
+  align-items: center !important;
+  margin: 20px 15px 20px 15px !important;
+  transition: box-shadow 2000ms ease, background-color 1000ms ease-in-out !important;
+  text-decoration: none !important;
+  color: black !important;
+} */
+
+.signup-email-button:hover {
+  box-shadow: 0 0 50px rgb(0 0 0 / 50%) !important;
+  background-color: rgb(255, 255, 255, 0%) !important;
+  transition: box-shadow 1000ms ease, background-color 1000ms ease-in-out !important;
+}
+
+a:link {
+  text-decoration: none !important;
+  color: black !important;
+}
+
+a:visited {
+  text-decoration: none !important;
+  color: black !important;
+}
+
+a:active {
+  text-decoration: none !important;
+  color: black !important;
+}
