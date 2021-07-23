@@ -17,7 +17,7 @@ router.post("/", async (req, res, next) => {
     { expiresIn: process.env.EMAIL_TOKEN_EXPIRY }
   );
   res.send("Email sent");
-  let link = `${process.env.backEndLink}/api/${process.env.APIVersion}/update/password/verify/${user.user_id}/${token}`;
+  let link = `${process.env.backEndLink}/apis/${process.env.APIVersion}/update/password/verify/${user.user_id}/${token}`;
 
   try {
     await sendEmail(

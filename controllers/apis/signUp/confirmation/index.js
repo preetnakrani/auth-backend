@@ -15,13 +15,16 @@ router.use("/:token", async (req, res, next) => {
   let usr = await userServices.getUser({
     user_id: user.user_id,
     is_verified: false,
-    token_num: user.ver,
+    token_num: user.token_num,
   });
   if (!usr) {
     res.status(401);
     return next(new Error("Link Expired"));
   }
-  await userServices.update({ is_verified: true }, { user_id: user.user_id });
+  await userServices.updateUser(
+    { is_verified: true },
+    { user_id: user.user_id }
+  );
   await userServices.incrementUser({ token_num: 1 }, usr);
   return res.redirect(`${process.env.frontEndLink}/login`); // redirect to login page
 });

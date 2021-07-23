@@ -15,7 +15,7 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(require("./routes"));
+app.use(routes);
 
 app.use((err, _req, res, _next) => {
   if (err) {

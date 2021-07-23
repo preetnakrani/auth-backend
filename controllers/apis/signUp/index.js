@@ -40,7 +40,7 @@ router.post("/", async (req, res, next) => {
     }
   );
 
-  let link = `${process.env.backEndLink}/api/${process.env.APIVersion}/signup/confirmation/${token}`;
+  let link = `${process.env.backEndLink}/apis/${process.env.APIVersion}/signup/confirmation/${token}`;
   try {
     await sendEmail(
       path.join(
