@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
-const path = require("path");
 const userServices = require("../../../../services/user");
 
 router.use("/:token", async (req, res, next) => {

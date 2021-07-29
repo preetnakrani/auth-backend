@@ -8,8 +8,19 @@ const logout = require("../../../controllers/apis/logout");
 const signup = require("../../../controllers/apis/signUp");
 const update = require("../../../controllers/apis/updateAccount");
 
-router.get("/test", (_req, res) => {
-  res.send("Server is running!!!");
+const auth = require("../../../utils/auth/index").authMiddleWare;
+
+router.use("/test", (req, res, next) => {
+  setTimeout(() => {
+    return res.send("Server is up!");
+  }, 3000);
+  // next(new Error("heelo is it me your are looking for"));
+  // next();
+});
+
+router.use("/protected", auth, (req, res) => {
+  console.log("hereeas;dlfkafj");
+  res.send("This is the procted test!");
 });
 
 router.get("/refresh", async (req, res) => {

@@ -6,11 +6,16 @@ const userServices = require("../../../services/user");
 const sendEmail = require("../../../utils/emailService");
 
 const confirmation = require("./confirmation");
+const availability = require("./checkAvailability/checkAvailability");
 
 router.post("/", async (req, res, next) => {
   let data = req.body;
   let username = data.username;
   let email = data.email;
+  if (!username || !data.password || !email) {
+    res.status(500);
+    return next(new Error("Please input all data to signup"));
+  }
   let password = await bcrypt.hash(data.password || " ", 10);
   let user = null;
   try {
@@ -61,5 +66,6 @@ router.post("/", async (req, res, next) => {
 });
 
 router.use("/confirmation", confirmation);
+router.use("/availability", availability);
 
 module.exports = router;
