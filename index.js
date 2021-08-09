@@ -4,7 +4,12 @@ const server = require("./server/server");
 
 (async () => {
   try {
-    await db.authenticate();
+    if (process.env.dbAuthenticate) {
+      await db.authenticate();
+    }
+    if (process.env.dbSync) {
+      await db.sync({ force: process.env.dbSyncForce });
+    }
     server.start();
   } catch (err) {
     console.log(err.message);

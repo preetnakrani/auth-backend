@@ -10,17 +10,22 @@ const update = require("../../../controllers/apis/updateAccount");
 
 const auth = require("../../../utils/auth/index").authMiddleWare;
 
-router.use("/test", (req, res, next) => {
+router.use("/test-delay", (req, res, next) => {
   setTimeout(() => {
     return res.send("Server is up!");
   }, 3000);
-  // next(new Error("heelo is it me your are looking for"));
-  // next();
 });
 
-router.use("/protected", auth, (req, res) => {
-  console.log("hereeas;dlfkafj");
-  res.send("This is the procted test!");
+router.use("/test-error", (req, res, next) => {
+  next(new Error("heelo is it me your are looking for"));
+});
+
+router.use("/unprotected", (_req, res) => {
+  res.send("This is non protected test!");
+});
+
+router.use("/protected", auth, (_req, res) => {
+  res.send("This is the protected test!");
 });
 
 router.get("/refresh", async (req, res) => {
