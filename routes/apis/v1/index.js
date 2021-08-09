@@ -62,6 +62,7 @@ router.get("/refresh", async (req, res) => {
     }),
     {
       httpOnly: true,
+      secure: true,
     }
   );
 
