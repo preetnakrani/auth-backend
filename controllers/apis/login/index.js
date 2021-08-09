@@ -31,6 +31,7 @@ router.post("/", async (req, res, next) => {
   return res
     .cookie(process.env.cookieName, refreshToken, {
       httpOnly: true,
+      sameSite: "none",
     })
     .json({ accessToken, message: "Login Successful!" });
 });
