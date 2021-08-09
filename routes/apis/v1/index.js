@@ -63,6 +63,7 @@ router.get("/refresh", async (req, res) => {
     {
       httpOnly: true,
       sameSite: "none",
+      secure: true,
     }
   );
 
