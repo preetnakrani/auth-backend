@@ -16,9 +16,9 @@ exports.start = () => {
   app.use(express.json());
   app.use(cookieParser());
 
-  app.use(
-    express.static(path.join(__dirname, "..", "..", "project-client", "build"))
-  );
+  // app.use(
+  //   express.static(path.join(__dirname, "..", "..", "project-client", "build"))
+  // );
 
   app.use(routes);
 
@@ -32,13 +32,13 @@ exports.start = () => {
     next();
   });
 
-  app.use("*", (_req, res) => {
-    res.sendFile(
-      path.join(__dirname, "..", "..", "project-client", "build", "index.html")
-    );
-  });
+  // app.use("*", (_req, res) => {
+  //   res.sendFile(
+  //     path.join(__dirname, "..", "..", "project-client", "build", "index.html")
+  //   );
+  // });
 
-  app.listen(process.env.PORT || 9999, () => {
+  app.listen(process.env.PORT || process.env.port || 9999, () => {
     console.log(`Server started at http://localhost:${process.env.PORT}`);
   });
 };
