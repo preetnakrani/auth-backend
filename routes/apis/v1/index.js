@@ -7,6 +7,7 @@ const login = require("../../../controllers/apis/login");
 const logout = require("../../../controllers/apis/logout");
 const signup = require("../../../controllers/apis/signUp");
 const update = require("../../../controllers/apis/updateAccount");
+const resend = require("../../../controllers/apis/resendVerifyLink/index");
 
 const auth = require("../../../utils/auth/index").authMiddleWare;
 
@@ -82,5 +83,6 @@ router.use("/login", login);
 router.use("/logout", logout);
 router.use("/signup", signup);
 router.use("/update", update);
+router.use("/resend", resend);
 
 module.exports = router;

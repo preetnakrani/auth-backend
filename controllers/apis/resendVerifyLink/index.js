@@ -4,7 +4,7 @@ const path = require("path");
 const userServices = require("../../../services/user");
 const sendEmail = require("../../../utils/emailService");
 
-router.post("/resend", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   let username = req.body.username;
   let user = await userServices.getUser({
     username: username,
@@ -14,15 +14,18 @@ router.post("/resend", async (req, res, next) => {
     res.status(404);
     return next(new Error("User is not registered or already verified!"));
   }
-  await userServices.increment({ token_num: 1 });
+  console.log(
+    "hreerehadklfhalskdfjas;ldfja;sldjf;alsjf;lasdkjf;lasdjkf;lasdjf;la"
+  );
+  await userServices.incrementUser({ token_num: 1 }, user);
   res.send("Email resent!");
   username = user.username;
   let token = jwt.sign(
     {
-      username: user.dataValues.username,
-      email,
-      user_id: user.dataValues.user_id,
-      ver: user.dataValues.token_num,
+      username: user.username,
+      email: user.email,
+      user_id: user.user_id,
+      token_num: user.token_num,
     },
     process.env.EMAIL_TOKEN,
     {
@@ -50,3 +53,5 @@ router.post("/resend", async (req, res, next) => {
     return next(err);
   }
 });
+
+module.exports = router;
