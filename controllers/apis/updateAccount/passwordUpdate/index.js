@@ -2,17 +2,22 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const userServices = require("../../../../services/user");
 const bcrypt = require("bcrypt");
+const path = require("path");
+const sendEmail = require("../../../../utils/emailService/index");
 
 router.post("/", async (req, res, next) => {
   let username = req.body.username;
-  let user = await userServices.getUser({ email: email, is_verified: true });
+  let user = await userServices.getUser({
+    username: username,
+    is_verified: true,
+  });
   if (!user) {
     res.status(404);
-    next(new Error("No verified user found!"));
+    return next(new Error("No verified user found!"));
   }
 
   let token = jwt.sign(
-    { user_id: user.user_id, email: user.email },
+    { user_id: user.user_id, email: user.email, username: user.username },
     process.env.EMAIL_TOKEN + user.password,
     { expiresIn: process.env.EMAIL_TOKEN_EXPIRY }
   );
@@ -32,9 +37,10 @@ router.post("/", async (req, res, next) => {
         "reset-password"
       ),
       { link, username },
-      email
+      user.email
     );
   } catch (err) {
+    console.log(err.message);
     return next(err);
   }
 });
@@ -49,6 +55,8 @@ router.post("/:id/:token", async (req, res, next) => {
     return next(new Error("Invalid Link"));
   }
   let token = null;
+  console.log("here");
+  console.log(req.body);
   try {
     token = jwt.verify(
       req.params.token,
@@ -58,7 +66,7 @@ router.post("/:id/:token", async (req, res, next) => {
     res.status(401);
     return next(new Error("Invalid link!"));
   }
-  if (req.body.confirmPassword != req.body.password) {
+  if (req.body.confirmpassword != req.body.password) {
     res.status(401);
     return next(new Error("Passwords don't match!"));
   }

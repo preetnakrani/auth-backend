@@ -2,6 +2,8 @@ const router = require("express").Router();
 const auth = require("../../../../utils/auth").authMiddleWare;
 const jwt = require("jsonwebtoken");
 const userServices = require("../../../../services/user");
+const path = require("path");
+const sendEmail = require("../../../../utils/emailService/index");
 
 router.post("/", auth, async (req, res, next) => {
   let user = await userServices.getUser({
