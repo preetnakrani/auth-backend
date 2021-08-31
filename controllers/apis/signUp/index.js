@@ -61,6 +61,7 @@ router.post("/", async (req, res, next) => {
       email
     );
   } catch (err) {
+    console.log(err.message);
     return next(err);
   }
 });
